@@ -9,6 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>pruebalisa-domain</artifactId>
+    <artifactId>pruebalisa-dom</artifactId>
+
 
 </project>

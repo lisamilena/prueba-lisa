@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <modules>
         <module>pruebalisa-app</module>
-        <module>pruebalisa-domain</module>
+        <module>pruebalisa-dom</module>
         <module>pruebalisa-rest</module>
         <module>pruebalisa-rest-api</module>
     </modules>
@@ -61,6 +61,12 @@
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>ma.glasnost.orika</groupId>
+            <artifactId>orika-core</artifactId>
+            <version>1.5.4</version>
         </dependency>
 
         <dependency>
