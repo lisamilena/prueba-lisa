@@ -28,9 +28,21 @@ public class PriceService {
 
     public List<PriceModel> findPrices(LocalDate date, Long productId, Long brandId) {
         try {
-            return mapper.mapAsList(priceRepository.findAll(), PriceModel.class);
+            return mapper.mapAsList(priceRepository.findByParams(getPrimitiveLong(brandId),
+                    getPrimitiveLong(productId),
+                    getFormatedDate(date.plusDays(1)),
+                    getFormatedDate(date)
+                    ), PriceModel.class);
         } catch (Exception e) {
             throw new ServiceException(ExceptionType.ERROR_PRICES.getCode(), e.getMessage());
         }
+    }
+
+    private long getPrimitiveLong(Long number) {
+        return number != null ? number : 0;
+    }
+
+    private String getFormatedDate(LocalDate date) {
+        return date != null ? date.toString() : "null";
     }
 }
