@@ -8,8 +8,6 @@ import org.example.dto.PricesDto;
 import org.example.model.PriceModel;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Configuration
@@ -38,6 +36,7 @@ public class RestOrikaConfig {
         })
         .byDefault()
         .register();
+
         return mapper.getMapperFacade();
     }
 }
