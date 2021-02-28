@@ -1,3 +1,8 @@
+logging:
+  level:
+    ROOT: INFO
+    org.example: DEBUG
+
 spring:
   h2:
     console:
@@ -5,7 +10,7 @@ spring:
       path: /h2
 
   datasource:
+    initialize: true
     url: jdbc:h2:file:~/test
     username: sa
     password:
-    driverClassName: org.h2.Driver
