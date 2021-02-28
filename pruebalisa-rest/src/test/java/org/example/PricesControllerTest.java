@@ -31,6 +31,7 @@ import java.util.stream.Collectors;
 public class PricesControllerTest {
 
     @MockBean
+    @Qualifier("Prices")
     private PriceService priceService;
 
     @MockBean

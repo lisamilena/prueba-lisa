@@ -7,5 +7,5 @@
 .idea/*
 */target/*
 *.iml
-*.jar
+*/*.jar
 *.lst

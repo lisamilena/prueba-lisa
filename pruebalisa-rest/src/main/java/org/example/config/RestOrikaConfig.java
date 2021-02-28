@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Configuration
 public class RestOrikaConfig {
@@ -19,7 +20,7 @@ public class RestOrikaConfig {
         DefaultMapperFactory mapper = new DefaultMapperFactory.Builder().build();
 
         mapper.classMap(PriceModel.class, PricesDto.class)
-        .customize(new CustomMapper<PriceModel, PricesDto>() {
+        .customize(new CustomMapper<>() {
             @Override
             public void mapAtoB(PriceModel priceModel, PricesDto pricesDto, MappingContext context) {
                 pricesDto.setFareId(priceModel.getId());
@@ -31,7 +32,7 @@ public class RestOrikaConfig {
                 pricesDto.setEndDate(formatDate(priceModel.getEnddate()));
             }
 
-            private String formatDate(Timestamp date) {
+            private String formatDate(LocalDateTime date) {
                 return date != null ? date.toString() : null;
             }
         })

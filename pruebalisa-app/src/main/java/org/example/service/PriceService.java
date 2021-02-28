@@ -8,9 +8,12 @@ import org.example.model.PriceModel;
 import org.example.repository.PriceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.List;
 
+@Service("Prices")
+@Getter
 public class PriceService {
 
     private final PriceRepository priceRepository;
@@ -26,8 +29,8 @@ public class PriceService {
         try {
             return mapper.mapAsList(priceRepository.findByParams(getPrimitiveLong(brandId),
                     getPrimitiveLong(productId),
-                    getFormatedDate(date, 1),
-                    getFormatedDate(date, 0)), PriceModel.class);
+                    getFormattedDate(date, 1),
+                    getFormattedDate(date, 0)), PriceModel.class);
         } catch (Exception e) {
             throw new ServiceException(ExceptionType.ERROR_PRICES.getCode(), e.getMessage());
         }
@@ -37,7 +40,7 @@ public class PriceService {
         return number != null ? number : 0;
     }
 
-    private String getFormatedDate(LocalDate date, long plusDays) {
+    private String getFormattedDate(LocalDate date, long plusDays) {
         return date != null ? date.plusDays(plusDays).toString() : "null";
     }
 }
