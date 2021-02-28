@@ -1,15 +1,16 @@
 package org.example.controller;
 
-import org.example.dto.PricesDto;
 import ma.glasnost.orika.MapperFacade;
+import org.example.dto.PricesDto;
+import org.example.exception.ServiceException;
+import org.example.exceptions.ApiException;
+import org.example.service.PriceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.example.service.PriceService;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -29,6 +30,12 @@ public class PricesController {
     public List<PricesDto> findPrices(@RequestParam(required = false) @DateTimeFormat(pattern = "dd/MM/yyyy") LocalDate date,
                                       @RequestParam(required = false) Long productId,
                                       @RequestParam(required = false) Long brandId) {
-        return mapper.mapAsList(priceService.findPrices(date, productId, brandId), PricesDto.class);
+        try {
+            return mapper.mapAsList(priceService.findPrices(date, productId, brandId), PricesDto.class);
+        } catch (ServiceException e) {
+            throw new ApiException(e.getType());
+        } catch (Exception e) {
+            throw new ApiException("Error", e);
+        }
     }
 }

@@ -1,6 +1,8 @@
 package org.example.service;
 
+import lombok.Getter;
 import ma.glasnost.orika.MapperFacade;
+import org.example.entity.PriceEntity;
 import org.example.exception.ExceptionType;
 import org.example.exception.ServiceException;
 import org.example.model.PriceModel;
@@ -8,13 +10,11 @@ import org.example.repository.PriceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-
-import javax.sql.rowset.serial.SerialException;
 import java.time.LocalDate;
-import java.util.Collections;
 import java.util.List;
 
-@Service
+@Service("Prices")
+@Getter
 public class PriceService {
 
     private final PriceRepository priceRepository;
@@ -30,8 +30,8 @@ public class PriceService {
         try {
             return mapper.mapAsList(priceRepository.findByParams(getPrimitiveLong(brandId),
                     getPrimitiveLong(productId),
-                    getFormatedDate(date.plusDays(1)),
-                    getFormatedDate(date)
+                    getFormatedDate(date, 1),
+                    getFormatedDate(date, 0)
                     ), PriceModel.class);
         } catch (Exception e) {
             throw new ServiceException(ExceptionType.ERROR_PRICES.getCode(), e.getMessage());
@@ -42,7 +42,7 @@ public class PriceService {
         return number != null ? number : 0;
     }
 
-    private String getFormatedDate(LocalDate date) {
-        return date != null ? date.toString() : "null";
+    private String getFormatedDate(LocalDate date, long plusDays) {
+        return date != null ? date.plusDays(plusDays).toString() : "null";
     }
 }

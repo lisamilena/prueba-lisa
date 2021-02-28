@@ -1,7 +1,10 @@
 package org.example.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.ToString;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -15,6 +18,7 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "BRANDS")
+@AllArgsConstructor
 public class BrandEntity {
 
     @Id
@@ -24,7 +28,7 @@ public class BrandEntity {
     private String name;
     private String description;
 
-//    @OneToMany(mappedBy = "brand", fetch = FetchType.LAZY)
-//    @ToString.Exclude
-//    private List<PriceEntity> prices;
+    @OneToMany(mappedBy = "brand", fetch = FetchType.LAZY)
+    @ToString.Exclude
+    private List<PriceEntity> prices;
 }

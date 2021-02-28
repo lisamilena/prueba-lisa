@@ -1,3 +1,8 @@
+logging:
+  level:
+    ROOT: INFO
+    org.example: DEBUG
+
 spring:
   h2:
     console:

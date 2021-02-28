@@ -1,6 +1,8 @@
 package org.example.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.Entity;
@@ -15,6 +17,8 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "PRODUCTS")
+@AllArgsConstructor
+@NoArgsConstructor
 public class ProductEntity {
 
     @Id
@@ -25,7 +29,7 @@ public class ProductEntity {
     private String description;
 
 
-//    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
-//    @ToString.Exclude
-//    private List<PriceEntity> prices;
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
+    @ToString.Exclude
+    private List<PriceEntity> prices;
 }

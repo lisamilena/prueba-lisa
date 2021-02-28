@@ -7,7 +7,7 @@ public class PricesDto {
 
     private Long productId;
     private Long brandId;
-    private String fare;
+    private Long fareId;
     private String startDate;
     private String endDate;
     private Float price;

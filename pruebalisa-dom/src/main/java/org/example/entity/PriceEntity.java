@@ -1,7 +1,10 @@
 package org.example.entity;
 
-import org.example.enums.Currency;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.example.enums.Currency;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -13,11 +16,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
-import java.time.LocalDate;
 
 @Data
 @Entity
 @Table(name = "PRICES")
+@AllArgsConstructor
+@NoArgsConstructor
 public class PriceEntity {
 
     @Id
@@ -31,11 +35,11 @@ public class PriceEntity {
     @Enumerated(EnumType.STRING)
     private Currency currency;
 
-//    @ManyToOne
-//    @JoinColumn(name = "BRAND_ID", referencedColumnName = "brandid")
-//    private BrandEntity brand;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "PRODUCT_ID", referencedColumnName = "productid")
-//    private ProductEntity product;
+    @ManyToOne
+    @JoinColumn(name = "BRANDID")
+    private BrandEntity brand;
+
+    @ManyToOne
+    @JoinColumn(name = "PRODUCTID")
+    private ProductEntity product;
 }
