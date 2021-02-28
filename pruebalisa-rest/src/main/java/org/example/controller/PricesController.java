@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import lombok.Getter;
 import ma.glasnost.orika.MapperFacade;
 import org.example.dto.PricesDto;
 import org.example.exception.ServiceException;
@@ -15,6 +16,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
+@Getter
 public class PricesController {
 
     private final PriceService priceService;

@@ -16,7 +16,7 @@ public interface PriceRepository extends JpaRepository<PriceEntity, Long> {
             "(?2 = 0 or ?2 = p.productid) and " +
             "(?3 = 'null' or (parsedatetime(?3, 'yyyy-MM-dd') > p.startdate)) and " +
             "(?4 = 'null' or (parsedatetime(?4, 'yyyy-MM-dd') < p.enddate))" +
-            "Order by p.id, p.priority, p.startdate",
+            "Order by p.id, p.priority desc, p.startdate",
     nativeQuery = true)
     List<PriceEntity> findByParams(@Param("brandId") long brandId,
                                    @Param("productId") long productId,
