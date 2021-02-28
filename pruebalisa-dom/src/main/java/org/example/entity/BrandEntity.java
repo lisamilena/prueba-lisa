@@ -2,6 +2,7 @@ package org.example.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.CascadeType;
@@ -19,6 +20,7 @@ import java.util.List;
 @Entity
 @Table(name = "BRANDS")
 @AllArgsConstructor
+@NoArgsConstructor
 public class BrandEntity {
 
     @Id

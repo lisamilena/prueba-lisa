@@ -9,6 +9,8 @@ import org.example.model.PriceModel;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.sql.Timestamp;
+
 @Configuration
 public class RestOrikaConfig {
 
@@ -25,8 +27,12 @@ public class RestOrikaConfig {
                         priceModel.getBrand().getId() : null);
                 pricesDto.setProductId(priceModel.getProduct() != null ?
                         priceModel.getProduct().getId() : null);
-                pricesDto.setStartDate(priceModel.getStartdate().toString());
-                pricesDto.setEndDate(priceModel.getEnddate().toString());
+                pricesDto.setStartDate(formatDate(priceModel.getStartdate()));
+                pricesDto.setEndDate(formatDate(priceModel.getEnddate()));
+            }
+
+            private String formatDate(Timestamp date) {
+                return date != null ? date.toString() : null;
             }
         })
         .byDefault()

@@ -16,6 +16,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -28,8 +29,8 @@ public class PriceEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private Timestamp startdate;
-    private Timestamp enddate;
+    private LocalDateTime startdate;
+    private LocalDateTime enddate;
     private Long priority;
     private BigDecimal price;
     @Enumerated(EnumType.STRING)

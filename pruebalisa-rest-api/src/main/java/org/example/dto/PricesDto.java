@@ -11,4 +11,5 @@ public class PricesDto {
     private String startDate;
     private String endDate;
     private Float price;
+    private Long priority;
 }
